@@ -190,23 +190,25 @@ public class DrawingBalls extends Application {
                     numberOfDraws += numberOfSuccessiveDraws;
                     
                     for (int i = 0; i < numberOfSuccessiveDraws; i++) {
-                        if (random.nextInt(NUMBER_OF_BLACK_BALLS + NUMBER_OF_WHITE_BALLS) < NUMBER_OF_BLACK_BALLS){ //BLACK IS DRAWN FIRST
+                        int numberOfBlackBalls = NUMBER_OF_BLACK_BALLS;
+                        int numberOfWhiteBalls = NUMBER_OF_WHITE_BALLS;
+                        
+                        //FIRST BALL DRAW
+                        if (random.nextInt(numberOfBlackBalls + numberOfWhiteBalls) < numberOfBlackBalls){ //BLACK IS DRAWN FIRST
+                            numberOfBlackBalls--;
                             numberBlackFirst++;
-                            if (random.nextInt(NUMBER_OF_BLACK_BALLS-1 + NUMBER_OF_WHITE_BALLS) < NUMBER_OF_BLACK_BALLS-1){ //BLACK IS DRAWN SECOND
-                                numberBlackSecond++;
-                            }
-                            else { //WHITE IS DRAWN SECOND
-                                numberWhiteSecond++;
-                            }
+                        } else { //WHITE IS DRAWN FIRST
+                            numberOfWhiteBalls--;
+                            numberWhiteFirst++;   
                         }
-                        else { //WHITE IS DRAWN FIRST
-                            numberWhiteFirst++;
-                            if (random.nextInt(NUMBER_OF_BLACK_BALLS + NUMBER_OF_WHITE_BALLS-1) < NUMBER_OF_BLACK_BALLS){ //BLACK IS DRAWN SECOND
-                                numberBlackSecond++;
-                            }
-                            else { //WHITE IS DRAWN SECOND
-                                numberWhiteSecond++;
-                            }
+                        
+                        //SECOND BALL DRAW
+                        if (random.nextInt(numberOfBlackBalls + numberOfWhiteBalls) < numberOfBlackBalls){ //BLACK IS DRAWN SECOND
+                            numberOfBlackBalls--;
+                            numberBlackSecond++;
+                        } else { //WHITE IS DRAWN SECOND
+                            numberOfWhiteBalls--;
+                            numberWhiteSecond++;   
                         }
                     }
                     
